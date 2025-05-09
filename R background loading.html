@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Border Box</title>
+  <style>
+    .container {
+      height: 430px;
+      width: 430px;
+      border: 2px solid black;
+      border-radius: 15px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    img, h1 {
+        width:300px;
+        height: auto;
+      z-index: 2; /* Important: Bring them above the white layer */
+      background-size: cover;
+    }
+
+    .container::before {
+      content: "";
+      height: 600px;
+      width: 300px;
+      position: absolute;
+      background-image: linear-gradient(red, orange, green, blue);
+      animation: rotate 5s linear infinite;
+      z-index: 0; /* Behind everything */
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .container::after {
+      content: "";
+      position: absolute;
+      background-color: white;
+      inset: 20px;
+      z-index: 1; /* White card between rotating background and image/text */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="https://m.media-amazon.com/images/I/61AbHD-RGtL.jpg" alt="krishna" width="200">
+    <h1>HELLO</h1>
+  </div>
+
+</body>
+</html>
